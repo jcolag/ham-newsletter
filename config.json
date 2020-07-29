@@ -1,0 +1,16 @@
+{
+  "mailchimp": {
+    "apiKey": "",
+    "server": ""
+  },
+  "matomo": {
+    "site": 0,
+    "token_auth": "",
+    "url": ""
+  },
+  "ttrss": {
+    "user": "",
+    "password": "",
+    "url": ""
+  }
+}

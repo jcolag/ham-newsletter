@@ -11,6 +11,8 @@ const ffIni = fs.readFileSync(firefoxConfigPath, 'utf-8');
 const ffConfig = ini.parse(ffIni);
 const bookmarkPath = path.join(firefoxPath, ffConfig.Profile0.Path, dbName);
 
+// If we don't copy the file somewhere local, we'll run afoul of locking, if
+// someone is using the browser.
 fs.copyFileSync(bookmarkPath, dbName);
 
 const db = new sqlite3(dbName, {
@@ -26,9 +28,12 @@ db.close();
 for (let i = 0; i < rows.length; i++) {
   const now = new Date();
   const row = rows[i];
+  // Beware Firefox's wonderful new twist on UNIX timestamps: nanoseconds
+  // that are always zero and also incompatible with everything else.
   const date = new Date(row.lastModified / 1000);
 
   if (now.getDate() < 10) {
+    // If it's early in the month, we mean last month.
     now.setMonth(now.getMonth() - 1);
   }
 
@@ -38,11 +43,13 @@ for (let i = 0; i < rows.length; i++) {
   }
 }
 
+// Turn the data set into Markdown.
 const result = month
   .reverse()
   .map((r) => ` * [${r.title}](${r.url})`)
   .join('\n');
 
 console.log(result);
+// Delete the copied database, since we don't need it.
 fs.unlinkSync(dbName);
 

@@ -1,7 +1,16 @@
 {
+  "blogRss": "",
+  "general": {
+    "fromAddress": "",
+    "fromName": "",
+    "siteName": "",
+    "tagline": ""
+  },
+  "introFolder": "",
   "mailchimp": {
     "apiKey": "",
-    "server": ""
+    "folder": "",
+    "recipients": ""
   },
   "matomo": {
     "site": 0,

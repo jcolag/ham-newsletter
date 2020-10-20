@@ -17,7 +17,7 @@ introFolder=$(grep "introFolder" config.json | cut -f4 -d'"')
   echo "Ahem.  Newsletter!"
   echo
   echo "**Entropy Arbitrage** welcomed visitors from"
-  node matomo.js
+  node matomo-countries.js
   echo "this month, which never fails to please me.  Remember, all content is"
   echo "made available under the CC-BY-SA license, so if anybody needs to"
   echo "provide a translation, you don't need my permission."

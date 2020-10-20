@@ -33,6 +33,10 @@ introFolder=$(grep "introFolder" config.json | cut -f4 -d'"')
   echo
   node posts.js
   echo
+  echo "The most popular posts on the blog have been"
+  node matomo-popular.js
+  echo " for the month."
+  echo
   echo "# Articles I've Been Reading"
   echo
   echo "You've seen some of these already in Friday posts, but here's more from"

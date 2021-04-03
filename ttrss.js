@@ -33,6 +33,7 @@ async function getPostsForMonth(sid, mmyy = null) {
 
   // We weren't given a target date, so figure it out based
   // on the current date.
+
   if (mmyy === null) {
     const now = new Date();
     const mNow = now.getMonth();
@@ -86,7 +87,7 @@ async function main() {
     "user": config.ttrss.user,
   });
   const session_id = response.data.content.session_id;
-  response = await getPostsForMonth(session_id, new Date());
+  response = await getPostsForMonth(session_id);
   const html = response
     .map((p) => `* [${p.title}](${p.link}) from ${p.feed_title}`)
     .join('\n');

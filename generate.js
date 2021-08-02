@@ -7,7 +7,10 @@ const config = JSON.parse(fs.readFileSync('./config.json'));
 const server = config.mailchimp.apiKey.split('-')[1];
 const username = Math.random().toString(36).substring(2);
 const date = new Date();
-const month = date.toLocaleString('default', { month: 'long' });
+const month = new Date(
+    date.setDate(date.getDate() - 10)
+  )
+  .toLocaleString('default', { month: 'long' });
 const year = date.getFullYear();
 let postData = JSON.stringify({
   'recipients': {

@@ -26,13 +26,13 @@ axios({
   headers: {
   },
   method: 'GET',
-  url: `${config.matomo.url}/index.php?module=API&method=Live.getLastVisitsDetails&idSite=${config.matomo.site}&period=month&date=${date}&format=JSON&token_auth=${config.matomo.token_auth}`,
+  url: `${config.matomo.url}/index.php?module=API&method=UserCountry.getCountry&idSite=${config.matomo.site}&period=month&date=${date}&format=JSON&token_auth=${config.matomo.token_auth}`,
 }).then((result) => {
   const countries = {};
-  const visits = result.data;
+  const country = result.data;
 
-  visits
-    .map((v) => v.country)
+  country
+    .map((v) => v.label)
     .forEach((c) => {
       if (Object.prototype.hasOwnProperty.call(countries, c)) {
         countries[c] = countries[c] + 1;

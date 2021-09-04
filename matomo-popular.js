@@ -29,23 +29,34 @@ axios({
   headers: {
   },
   method: 'GET',
-  url: `${config.matomo.url}/index.php?module=API&method=Actions.getPageTitles&idSite=${config.matomo.site}&period=month&date=today&format=JSON&token_auth=${config.matomo.token_auth}`,
+  url: `${config.matomo.url}/index.php?module=API&method=Actions.getPageTitles&idSite=${config.matomo.site}&period=month&date=${date}&format=JSON&token_auth=${config.matomo.token_auth}`,
 }).then((result) => {
   const countries = {};
   const visits = result.data;
   let sanitized = visits
     .filter((v) => v.label.indexOf(' Posts |') !== 0)
-    .map((v) => ({
-      hits: v.nb_hits,
-      title: v.label.replace(' | Entropy Arbitrage', '').trim(),
-      url: urls[
-        v.label.replace(' | Entropy Arbitrage', '').trim().replace('’', "'")
-      ],
-      visits: v.nb_visits,
-    }))
+    .map((v) => {
+      const title = v.label
+        .replace(' | Entropy Arbitrage', '')
+        .trim()
+        .replace('’', "'")
+      const url = urls.filter((u) => u.title === title);
+
+      if (url.length === 0) {
+        return null;
+      }
+
+      return ({
+        hits: v.nb_hits,
+        title: title,
+        url: url[0].url,
+        visits: v.nb_visits,
+      });
+    })
+    .filter((v) => v !== null)
     .sort((a, b) => b.hits - a.hits)
     .slice(0, 4)
-    .map((v) => `[*${v.title}*](${blogPath}${v.url})`)
+    .map((v) => `[*${v.title}*](${blogPath}/${v.url})`)
     .join(', ');
   const idx = sanitized.lastIndexOf('),') + 2;
 

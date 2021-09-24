@@ -33,6 +33,10 @@ introFolder=$(grep "introFolder" config.json | cut -f4 -d'"')
   echo
   node posts.js
   echo
+  echo "I also updated some older posts, for various reasons."
+  echo
+  sh update.sh
+  echo
   echo "The most popular posts on the blog have been"
   node matomo-popular.js
   echo " for the month."

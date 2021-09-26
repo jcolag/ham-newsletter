@@ -9,10 +9,18 @@ first=$(echo "${hashes}" | cut -f2 -d' ')
 last=$(echo "${hashes}" | cut -f1 -d' ')
 for file in $(git diff --name-only $first $last | grep -v "^${month}")
 do
+  s=s
+  changes=$(git diff --word-diff=porcelain "${first}^1" "${last}" $file | grep '^[+-][^+-]' | wc -w)
+  if [ $changes -eq 1 ]
+  then
+    s=
+  fi
   target=$(basename $file .md | tr '-' '.')
   title=$(grep '^title: ' $file | cut -f2- -d':' | sed 's/^ *//g')
+  postdate=$(grep '^date: ' $file | cut -f2- -d':')
+  published=$(date --date="${postdate}" +"%A, %Y %B %d")
   url=$(grep "${target}" "${here}/blogurls.json" | cut -f4 -d'"')
-  echo "[$title]($rooturl$url)"
+  echo " * [${title}](${rooturl}${url}) from ${published}, ${changes} word${s}"
 done
 cd "${here}"
 

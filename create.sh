@@ -2,7 +2,7 @@
 markdown=$(mktemp --suffix=.md)
 html=$(mktemp --suffix=.html)
 month=$(faketime '9 days ago' date +"%B %Y")
-introFolder=$(grep "introFolder" config.json | cut -f4 -d'"')
+introFolder=$(jq -r '.introFolder' < config.json)
 
 # Get each piece of information we need, piping it all into a temporary
 # Markdown file.

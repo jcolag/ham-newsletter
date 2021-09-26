@@ -1,6 +1,6 @@
 #!/bin/sh
-rooturl=$(grep blogRss config.json | cut -f4 -d'"' | sed 's/\/feed.xml//g')
-postdir=$(grep 'postSource' config.json | cut -f4 -d'"')
+rooturl=$(jq -r '.blogRss' < config.json | sed 's/\/feed.xml//g')
+postdir=$(jq -r '.postSource' < config.json)
 here=$(pwd)
 month=$(date --date='9 days ago' +"%Y-%m")
 cd "${postdir}"

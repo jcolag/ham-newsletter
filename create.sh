@@ -33,9 +33,14 @@ introFolder=$(jq -r '.introFolder' < config.json)
   echo
   node posts.js
   echo
-  echo "I also updated some older posts, for various reasons."
+  echo "I also revisited and updated some older posts, for various reasons."
   echo
   sh update.sh
+  echo
+  echo "Significant changes to the text come with clear and dated markings."
+  echo "Changing the wording or correcting a typo is more routine, but it."
+  echo "indicates that I've at least been looking at the post.  Longer"
+  echo "changes probably have a brief write-up in this very newsletter."
   echo
   echo "The most popular posts on the blog have been"
   node matomo-popular.js

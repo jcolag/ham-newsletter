@@ -35,7 +35,7 @@ introFolder=$(jq -r '.introFolder' < config.json)
   echo
   echo "I also revisited and updated some older posts, for various reasons."
   echo
-  sh update.sh
+  sh updates.sh
   echo
   echo "Significant changes to the text come with clear and dated markings."
   echo "Changing the wording or correcting a typo is more routine, but it."

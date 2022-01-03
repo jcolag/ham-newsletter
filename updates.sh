@@ -17,7 +17,7 @@ for file in $(git diff --name-only "$first" "$last" | grep -v "^${month}")
 do
   words=words
   changes=$( \
-    git diff --word-diff=porcelain "${first}^1" "${last}" "$file" | \
+    git diff --word-diff=porcelain "${first}^1" "${last}" -- "$file" | \
     grep '^[+-][^+-]' | \
     wc -w \
   )

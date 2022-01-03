@@ -79,7 +79,7 @@ pandoc --from=markdown \
        --include-in-header=style.css \
        --self-contained \
        --section-divs \
-       --metadata pagetitle="For E-Mail" \
+       --metadata pagetitle="For&nbsp;E-Mail" \
        "${markdown}"
 # Set up the e-mail campaign.
 node generate.js "${html}"

@@ -12,7 +12,7 @@ const month = new Date(
   )
   .toLocaleString('default', { month: 'long' });
 const year = date.getFullYear();
-let postData = JSON.stringify({
+let postData = {
   'recipients': {
     'list_id': config.mailchimp.recipients,
   },
@@ -35,7 +35,7 @@ let postData = JSON.stringify({
     },
   },
   'type': 'regular',
-});
+};
 
 // Create a new campaign.
 const createResult = axios({
@@ -50,9 +50,9 @@ const createResult = axios({
 }).then((response) => {
   if (response.status === 200) {
     const campaignId = response.data.id;
-    const putData = JSON.stringify({
+    const putData = {
       html: fs.readFileSync(argv[0], 'utf-8'),
-    });
+    };
     // Add the supplied content to the campaign.
     const putResult = axios({
       data: putData,
@@ -74,10 +74,12 @@ const createResult = axios({
       console.log('PUT campaign content');
       console.log(error);
       console.log(error.response.data);
+      console.log(error.response.data.errors);
     });
   }
 }).catch((error) => {
   console.log('POST new campaign');
   console.log(error);
+  console.log(error.response.data.errors);
 });
 

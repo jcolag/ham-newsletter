@@ -40,7 +40,9 @@ axios({
         .replace(' | Entropy Arbitrage', '')
         .trim()
         .replace('’', "'")
-      const url = urls.filter((u) => u.title === title);
+      const url = urls.filter((u) =>
+        Object.prototype.hasOwnProperty.call(u, title)
+      );
 
       if (url.length === 0) {
         return null;

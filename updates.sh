@@ -29,7 +29,7 @@ do
   title=$(grep '^title: ' "$file" | cut -f2- -d':' | sed 's/^ *//g')
   postdate=$(grep '^date: ' "$file" | cut -f2- -d':')
   published=$(date --date="${postdate}" +"%A, %Y %B %d")
-  url=$(grep "${target}" "${here}/blogurls.json" | cut -f4 -d'"')
+  url=$(jq . "${here}/blogurls.json" | grep "${target}" | cut -f4 -d'"')
   echo " * [${title}](${rooturl}${url}) from ${published}, ${changes} ${words}"
 done
 cd "${here}" || exit

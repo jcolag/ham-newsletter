@@ -51,7 +51,7 @@ axios({
       return ({
         hits: v.nb_hits,
         title: title,
-        url: url[0].url,
+        url: url[0][title],
         visits: v.nb_visits,
       });
     })

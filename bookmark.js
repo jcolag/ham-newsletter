@@ -3,13 +3,14 @@ const fs = require('fs');
 const ini = require('ini');
 const path = require('path');
 
+const config = JSON.parse(fs.readFileSync('./config.json'));
 const dbName = 'places.sqlite';
 const homedir = require('os').homedir();
 const firefoxPath = path.join(homedir, '.mozilla', 'firefox');
 const firefoxConfigPath = path.join(firefoxPath, 'profiles.ini');
 const ffIni = fs.readFileSync(firefoxConfigPath, 'utf-8');
 const ffConfig = ini.parse(ffIni);
-const bookmarkPath = path.join(firefoxPath, ffConfig.Profile0.Path, dbName);
+const bookmarkPath = path.join(config.firefox.dbPath, dbName);
 
 // If we don't copy the file somewhere local, we'll run afoul of locking, if
 // someone is using the browser.

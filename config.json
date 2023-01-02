@@ -1,5 +1,8 @@
 {
   "blogRss": "",
+  "firefox": {
+    "dbPath": ""
+  },
   "general": {
     "fromAddress": "",
     "fromName": "",

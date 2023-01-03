@@ -25,18 +25,20 @@ const select = db.prepare(
 const rows = select.all();
 const month = [];
 
+const now = new Date();
+
 db.close();
+
+if (now.getDate() < 10) {
+  // If it's early in the month, we mean last month.
+  now.setMonth(now.getMonth() - 1);
+}
+
 for (let i = 0; i < rows.length; i++) {
-  const now = new Date();
   const row = rows[i];
   // Beware Firefox's wonderful new twist on UNIX timestamps: nanoseconds
   // that are always zero and also incompatible with everything else.
   const date = new Date(row.lastModified / 1000);
-
-  if (now.getDate() < 10) {
-    // If it's early in the month, we mean last month.
-    now.setMonth(now.getMonth() - 1);
-  }
 
   if (date.getYear() === now.getYear() && date.getMonth() === now.getMonth()) {
     row.lastModified = date;

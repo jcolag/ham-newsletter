@@ -3,6 +3,9 @@ markdown=$(mktemp --suffix=.md)
 html=$(mktemp --suffix=.html)
 month=$(faketime '9 days ago' date +"%B %Y")
 introFolder=$(jq -r '.introFolder' < config.json)
+blogFolder=$(jq -r '.general.blog' < config.json)
+
+cp "${blogFolder}/blogurls.json" .
 
 # Get each piece of information we need, piping it all into a temporary
 # Markdown file.

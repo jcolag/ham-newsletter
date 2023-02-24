@@ -4,11 +4,11 @@
     "dbPath": ""
   },
   "general": {
+    "blog": "",
     "fromAddress": "",
     "fromName": "",
     "siteName": "",
     "tagline": ""
-    "blog": "",
   },
   "introFolder": "",
   "mailchimp": {

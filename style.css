@@ -1,6 +1,13 @@
 <style type="text/css">
-body {
-}
-h1,h2,h3,h4,h5,h6 {
-}
+  body {
+    background-color: ivory;
+    color: #244151;
+    font-family: Lato,"sans-serif";
+    margin-left: 15%;
+    width: 70%;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    color: #49281b;
+    font-family: "Playfair Display",Georgia,serif
+  }
 </style>

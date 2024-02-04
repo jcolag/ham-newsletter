@@ -82,7 +82,8 @@ pandoc --from=markdown \
        --standalone \
        --table-of-contents \
        --include-in-header=style.css \
-       --self-contained \
+       --embed-resources \
+       --standalone \
        --section-divs \
        --metadata pagetitle="For&nbsp;E-Mail" \
        "${markdown}"

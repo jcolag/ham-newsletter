@@ -21,9 +21,13 @@ https.get(config.blogRss, (res) => {
         const entry = entries[i];
         const title = entry.link[0]['$'].title;
         const url = entry.link[0]['$'].href;
-        const summary = entry.summary[0]._;
+        let summary = 'No summary found.';
         const published = new Date(entry.published[0]);
         const now = new Date();
+
+        if (Object.prototype.hasOwnProperty.call(entry, 'summary')) {
+          const summary = entry.summary[0]._;
+        }
 
         if (now.getDate() < 10) {
           // If it's early in the month, we mean last month.

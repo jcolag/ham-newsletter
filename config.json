@@ -22,6 +22,12 @@
     "url": ""
   },
   "postSource": "",
+  "nextcloudnews": {
+    "batch": 200,
+    "user": "",
+    "password": "",
+    "url": ""
+  },
   "ttrss": {
     "user": "",
     "password": "",

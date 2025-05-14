@@ -28,6 +28,10 @@
     "password": "",
     "url": ""
   },
+  "rssGuard": {
+    "dbPath": ""
+  },
+  "postSource": "/home/john/code/entropy-arbitrage-code/_posts",
   "ttrss": {
     "user": "",
     "password": "",

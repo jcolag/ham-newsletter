@@ -56,7 +56,7 @@ cp "${blogFolder}/blogurls.json" .
   echo "You've seen some of these already in Friday posts, but here's more from"
   echo "the sources in my RSS reader that I thought were worth reading."
   echo
-  node ttrss.js
+  sh rssguard.sh
   echo
   echo "# Web Pages That Caught My Attention"
   echo
@@ -94,6 +94,8 @@ node generate.js "${html}"
 #   firefox "${html}"
 # Copy the Markdown file for possible future archiving.
 cp "${markdown}" "news-$(faketime '9 days ago' date +"%Y-%m").md"
+# Open the HTML in Firefox for copying elsewhere.
+firefox "${html}"
 # Delete the temporary files; comment this out, if you're going to open the
 # temporary HTML file in a browser, since it can delete too quickly for
 # the browser to read.

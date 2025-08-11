@@ -56,7 +56,7 @@ cp "${blogFolder}/blogurls.json" .
   echo "You've seen some of these already in Friday posts, but here's more from"
   echo "the sources in my RSS reader that I thought were worth reading."
   echo
-  sh rssguard.sh
+  node freshrss.js
   echo
   echo "# Web Pages That Caught My Attention"
   echo

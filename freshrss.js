@@ -63,9 +63,8 @@ async function getPostsForMonth(auth, mmyy = null) {
     // set up to get the next batch
     // If we don't have any posts in this batch, then
     // we're done.
-    postsInBatch = response.data.items.length;
-    offset += batch;
-  } while (postsInBatch === batch);
+    continuation = response.data.continuation;
+  } while (continuation);
   return results;
 }
 

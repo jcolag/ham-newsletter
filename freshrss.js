@@ -47,6 +47,8 @@ async function getPostsForMonth(auth, mmyy = null) {
   do {
     // Get a batch of starred posts.
     const response = await get('/reader/api/0/stream/contents/user/-/state/com.google/starred', {
+      "c": continuation,
+      "n": batch,
       "output": "json",
     }, auth);
 

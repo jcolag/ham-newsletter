@@ -81,7 +81,7 @@ async function main() {
   response = await getPostsForMonth(auth.get('Auth'));
 
   const md = response
-    .map((p) => `* [${p.title}](${p.origin.htmlUrl}${p.origin.streamId}) from ${p.origin.title}`)
+    .map((p) => `* [${p.title}](${p.canonical[0].href}) from ${p.origin.title}`)
     .join('\n');
 
   console.log(md);

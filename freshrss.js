@@ -27,7 +27,6 @@ async function getPostsForMonth(auth, mmyy = null) {
   const batch = config.freshrss.batch;
   let results = [];
   let date = mmyy;
-  let postsInBatch = 0;
   let offset = 0;
 
   // We weren't given a target date, so figure it out based

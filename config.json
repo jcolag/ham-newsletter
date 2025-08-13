@@ -3,6 +3,12 @@
   "firefox": {
     "dbPath": ""
   },
+  "freshrss": {
+    "batch": 20,
+    "password": "",
+    "url": "",
+    "user": ""
+  },
   "general": {
     "blog": "",
     "fromAddress": "",
@@ -21,7 +27,6 @@
     "token_auth": "",
     "url": ""
   },
-  "postSource": "",
   "nextcloudnews": {
     "batch": 200,
     "user": "",
@@ -31,7 +36,7 @@
   "rssGuard": {
     "dbPath": ""
   },
-  "postSource": "/home/john/code/entropy-arbitrage-code/_posts",
+  "postSource": "",
   "ttrss": {
     "user": "",
     "password": "",

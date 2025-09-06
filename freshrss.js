@@ -28,6 +28,7 @@ async function getPostsForMonth(auth, mmyy = null) {
   let results = [];
   let date = mmyy;
   let offset = 0;
+  let continuation;
 
   // We weren't given a target date, so figure it out based
   // on the current date.

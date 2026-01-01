@@ -4,6 +4,8 @@ html=$(mktemp --suffix=.html)
 month=$(faketime '9 days ago' date +"%B %Y")
 introFolder=$(jq -r '.introFolder' < config.json)
 blogFolder=$(jq -r '.general.blog' < config.json)
+recovery=$(find ~/.mozilla/firefox -name "recovery.jsonlz4" -print)
+tabs=$(lz4jsoncat "${recovery}" | jq -r .windows[].tabs[].entries[0].url)
 
 cp "${blogFolder}/blogurls.json" .
 
@@ -87,17 +89,24 @@ pandoc --from=markdown \
        --section-divs \
        --metadata pagetitle="For&nbsp;E-Mail" \
        "${markdown}"
-# Set up the e-mail campaign.
-node generate.js "${html}"
-# Clean up the temporary files.  When I want to preview the file for debugging,
-# I'll call something like:
-#   firefox "${html}"
+
 # Copy the Markdown file for possible future archiving.
 cp "${markdown}" "news-$(faketime '9 days ago' date +"%Y-%m").md"
+
 # Open the HTML in Firefox for copying elsewhere.
 firefox "${html}"
+
 # Delete the temporary files; comment this out, if you're going to open the
 # temporary HTML file in a browser, since it can delete too quickly for
 # the browser to read.
+sleep 3
 rm "${markdown}" "${html}"
+
+# Open Buy Me a Coffee, if not already open in Firefox
+if grep -q 'buymeacoffee.com' <<< "${tabs}"
+then
+  echo ...
+else
+  xdg-open https://www.buymeacoffee.com/app/dashboard
+fi
 

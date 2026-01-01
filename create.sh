@@ -4,8 +4,17 @@ html=$(mktemp --suffix=.html)
 month=$(faketime '9 days ago' date +"%B %Y")
 introFolder=$(jq -r '.introFolder' < config.json)
 blogFolder=$(jq -r '.general.blog' < config.json)
+halt=$(jq -r '.general.halt' < config.json)
+idle="${introFolder}/$(faketime '9 days ago' date +"%Y-%m").md"
 recovery=$(find ~/.mozilla/firefox -name "recovery.jsonlz4" -print)
 tabs=$(lz4jsoncat "${recovery}" | jq -r .windows[].tabs[].entries[0].url)
+
+if grep -iqw "${halt}" "${idle}"
+then
+  echo "\e[3m${idle}\e[0m still includes \e[1m${halt}\e[0m."
+  echo Exiting...
+  exit 0
+fi
 
 cp "${blogFolder}/blogurls.json" .
 
@@ -31,7 +40,7 @@ cp "${blogFolder}/blogurls.json" .
   echo
   echo "# $(faketime '9 days ago' date +%B)'s Idle Thoughts"
   echo
-  cat "${introFolder}/$(faketime '9 days ago' date +"%Y-%m").md"
+  cat "${idle}"
   echo
   echo "# Blog Posts for ${month}"
   echo

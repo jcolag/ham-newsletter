@@ -77,7 +77,7 @@ cp "${blogFolder}/blogurls.json" .
   echo "that half the titles are probably bogus, because people are *terrible*"
   echo "at setting their page titles to something useful."
   echo
-  node bookmark.js
+  node shiori.js
   echo
   echo "That's it for this month.  Stop by the blog and leave comments or"
   echo "contact me however else you see fit."

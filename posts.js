@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 John Colagioia <john@colagioia.net>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 const fs = require('fs');
 const https = require('https');
 const xml = require('xml2js');

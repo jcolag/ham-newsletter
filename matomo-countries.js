@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 John Colagioia <john@colagioia.net>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 const axios = require('axios');
 const fs = require('fs');
 

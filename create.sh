@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# SPDX-FileCopyrightText: 2020 John Colagioia <john@colagioia.net>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 markdown=$(mktemp --suffix=.md)
 html=$(mktemp --suffix=.html)
 month=$(faketime '9 days ago' date +"%B %Y")
